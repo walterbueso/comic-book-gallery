@@ -1,24 +1,26 @@
-﻿@{
+﻿@model ComicBookGallery.Models.ComicBook
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Comic Books";
+    ViewBag.Title = Model.DisplayText;
     //Dont put your properties here, put them in the controller and render these properties using viewbag 
 }
 
-<h1>@ViewBag.SeriesTitle</h1>
-<h2>Issue #@ViewBag.IssueNumber</h2>
+<h1>@Model.SeriesTitle</h1>
+<h2>Issue #@Model.IssueNumber</h2>
 
 <h3>Description:</h3>
-<div>@Html.Raw(ViewBag.Description)</div>
+<div>@Html.Raw(Model.DescriptionHtml)</div>
 
 
-@if (ViewBag.Artist.Length > 0)
+@if (Model.Artists.Length > 0)
 {
     <h3>Artist:</h3>
     <div>
         <ul>
-            @foreach (var item in ViewBag.Artist)
+            @foreach (var item in Model.Artists)
             {
-                <li>@item</li>
+                <li>@item.Role: @item.Name</li>
             }
         </ul>
     </div>
